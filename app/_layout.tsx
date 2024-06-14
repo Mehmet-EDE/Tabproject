@@ -4,11 +4,14 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-
+import CustomNotification from './CustomNotification';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { View } from 'react-native';
+import CustomSplashScreen from './CustomSplashScreen'
+
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -16,11 +19,14 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (loaded) {
+  //       // return <CustomSplashScreen/>
+  //       SplashScreen.hideAsync();
+  //     }
+  //   }, 15000);
+  // }, [loaded]);
 
   if (!loaded) {
     return null;
@@ -28,6 +34,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <CustomNotification />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />

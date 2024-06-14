@@ -51,10 +51,15 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
   link: {
-    lineHeight: 30,
-    fontSize: 16,
+    ...StyleSheet.flatten({
+      fontSize: 20,
+      fontWeight: 'bold',
+      textDecorationLine: 'underline',
+    }),
     color: '#0a7ea4',
   },
 });
+
